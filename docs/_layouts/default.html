@@ -71,6 +71,14 @@
       margin: 0 auto;
     }
 
+    .topbarRight {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
     .brand {
       display: flex;
       align-items: center;
@@ -79,22 +87,33 @@
       letter-spacing: 0.2px;
     }
 
+    .brandlink {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .brandtext {
+      font-weight: 650;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+    }
+
     .logo {
       width: 34px;
       height: 34px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border-radius: 0.85rem;
+      border-radius: 999px;
       border: 1px solid var(--line);
-      background: color-mix(in oklab, var(--bg2), transparent 35%);
+      background: linear-gradient(135deg, rgba(138,180,248,0.22), rgba(118,222,161,0.18));
       box-shadow: var(--shadow);
-    }
-
-    .logo svg {
-      width: 22px;
-      height: 22px;
-      color: var(--text);
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: 0.08em;
     }
 
     nav {
@@ -168,6 +187,13 @@
       h1 { font-size: 1.6rem; }
       .topbar { padding: 0.85rem 1rem; }
       .wrap { padding: 1.25rem 1rem 2.5rem; }
+
+      /* Mobile: stack nav nicely and keep it readable */
+      .topbar { align-items: flex-start; }
+      .topbarRight { width: 100%; justify-content: flex-start; }
+      nav { gap: 0.4rem; }
+      .navlink { padding: 0.3rem 0.45rem; }
+      .brandtext { font-size: 0.98rem; }
     }
   </style>
 </head>
@@ -176,35 +202,25 @@
   <header>
     <div class="topbar">
       <div class="brand">
-        <a href="{{ '/' | relative_url }}" class="logo" aria-label="Quiet Operators home">
-          <svg viewBox="0 0 40 40" role="img" aria-hidden="true">
-            <defs>
-              <linearGradient id="qoGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#8ab4f8"/>
-                <stop offset="1" stop-color="#76dea1"/>
-              </linearGradient>
-            </defs>
-            <rect x="3" y="3" width="34" height="34" rx="10" fill="none" stroke="url(#qoGrad)" stroke-width="2"/>
-            <path d="M14 26.5c0-4.7 0-8.3 0-13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M14 26.5c0 0 4.3 0 7 0" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M25.8 20c0 4-2.4 6.6-6 6.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M19.8 26.6c-3.6 0-6-2.6-6-6.6s2.4-6.6 6-6.6 6 2.6 6 6.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-          </svg>
+        <a href="{{ '/' | relative_url }}" class="brandlink" aria-label="Quiet Operators home">
+          <span class="logo" aria-hidden="true">QO</span>
+          <span class="brandtext">Quiet Operators</span>
         </a>
-        <a href="{{ '/' | relative_url }}" class="navlink" style="padding:0; border:0; background:transparent; color:var(--text);">Quiet Operators</a>
       </div>
 
-      <nav>
-        <a class="navlink" href="{{ '/' | relative_url }}">Docs</a>
-        <a class="navlink" href="{{ '/runbooks/inbox-triage/' | relative_url }}">Runbooks</a>
-        <a class="navlink" href="{{ '/runbooks/template/' | relative_url }}">Template</a>
-        <a class="navlink" href="{{ '/manifests/guardrails/' | relative_url }}">Guardrails</a>
+      <div class="topbarRight">
+        <nav>
+          <a class="navlink" href="{{ '/' | relative_url }}">Docs</a>
+          <a class="navlink" href="{{ '/runbooks/inbox-triage/' | relative_url }}">Runbooks</a>
+          <a class="navlink" href="{{ '/runbooks/template/' | relative_url }}">Template</a>
+          <a class="navlink" href="{{ '/manifests/guardrails/' | relative_url }}">Guardrails</a>
+        </nav>
         <a class="iconbtn" href="https://github.com/velsa/quiet-operators-playbook" aria-label="GitHub repository">
           <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 .5C5.65.5.5 5.78.5 12.29c0 5.21 3.29 9.63 7.86 11.19.58.11.79-.26.79-.57v-2.13c-3.2.72-3.87-1.59-3.87-1.59-.52-1.36-1.27-1.72-1.27-1.72-1.04-.73.08-.72.08-.72 1.15.08 1.76 1.23 1.76 1.23 1.02 1.8 2.67 1.28 3.32.98.1-.76.4-1.28.72-1.58-2.55-.3-5.23-1.31-5.23-5.84 0-1.29.45-2.35 1.19-3.18-.12-.3-.52-1.52.11-3.17 0 0 .97-.32 3.18 1.21.92-.26 1.91-.39 2.89-.4.98.01 1.97.14 2.89.4 2.2-1.53 3.17-1.21 3.17-1.21.63 1.65.23 2.87.11 3.17.74.83 1.19 1.89 1.19 3.18 0 4.54-2.69 5.54-5.25 5.84.41.36.78 1.08.78 2.18v3.23c0 .31.21.68.79.57 4.58-1.56 7.87-5.98 7.87-11.19C23.5 5.78 18.35.5 12 .5z"/>
           </svg>
         </a>
-      </nav>
+      </div>
     </div>
   </header>
 
