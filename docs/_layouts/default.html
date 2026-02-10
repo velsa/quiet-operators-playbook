@@ -3,26 +3,196 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
   <title>{{ page.title }} · {{ site.title }}</title>
+
   <style>
-    body { font-family: -apple-system, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 2rem auto; max-width: 860px; padding: 0 1rem; line-height: 1.55; }
-    a { color: #0b57d0; }
-    code, pre { background: #f6f8fa; }
-    pre { padding: 1rem; overflow: auto; }
-    .nav { margin-bottom: 1.5rem; }
-    .nav a { margin-right: 1rem; }
-    .muted { color: #666; }
+    :root {
+      --bg: #0b0d10;
+      --bg2: #0f1217;
+      --text: #e8edf3;
+      --muted: #a6b0bf;
+      --line: rgba(232,237,243,0.12);
+      --link: #8ab4f8;
+      --codebg: rgba(255,255,255,0.06);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #ffffff;
+        --bg2: #f6f8fa;
+        --text: #111827;
+        --muted: #5b6677;
+        --line: rgba(17,24,39,0.12);
+        --link: #0b57d0;
+        --codebg: rgba(17,24,39,0.04);
+        --shadow: 0 10px 30px rgba(17,24,39,0.08);
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      background: radial-gradient(1200px 800px at 20% -10%, rgba(138,180,248,0.12), transparent 55%),
+                  radial-gradient(900px 600px at 90% 10%, rgba(118,222,161,0.10), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+    }
+
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      background: color-mix(in oklab, var(--bg), transparent 35%);
+      border-bottom: 1px solid var(--line);
+      z-index: 10;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.85rem 1.25rem;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 650;
+      letter-spacing: 0.2px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #8ab4f8, #76dea1);
+      box-shadow: var(--shadow);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .navlink {
+      padding: 0.35rem 0.55rem;
+      border-radius: 0.6rem;
+      color: var(--muted);
+      border: 1px solid transparent;
+    }
+
+    .navlink:hover {
+      color: var(--text);
+      background: color-mix(in oklab, var(--bg2), transparent 35%);
+      border-color: var(--line);
+      text-decoration: none;
+    }
+
+    .iconbtn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 0.75rem;
+      border: 1px solid var(--line);
+      background: color-mix(in oklab, var(--bg2), transparent 35%);
+      color: var(--muted);
+    }
+
+    .iconbtn:hover { color: var(--text); }
+    .icon { width: 18px; height: 18px; }
+
+    main {
+      padding-top: 1.75rem;
+    }
+
+    h1, h2, h3 { line-height: 1.25; letter-spacing: -0.01em; }
+    h1 { font-size: 2rem; margin: 0 0 1rem; }
+    h2 { margin-top: 2rem; }
+
+    hr { border: 0; border-top: 1px solid var(--line); margin: 2.25rem 0 1.25rem; }
+
+    code, pre {
+      background: var(--codebg);
+      border: 1px solid var(--line);
+      border-radius: 0.75rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.95em;
+    }
+
+    code { padding: 0.15rem 0.35rem; }
+
+    pre {
+      padding: 1rem;
+      overflow: auto;
+    }
+
+    footer {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* Small screens */
+    @media (max-width: 560px) {
+      h1 { font-size: 1.6rem; }
+      .topbar { padding: 0.85rem 1rem; }
+      .wrap { padding: 1.25rem 1rem 2.5rem; }
+    }
   </style>
 </head>
+
 <body>
-  <div class="nav">
-    <a href="{{ '/' | relative_url }}">Home</a>
-    <a href="{{ '/runbooks/inbox-triage/' | relative_url }}">Runbooks</a>
-    <a href="{{ '/runbooks/template/' | relative_url }}">Template</a>
-    <a href="https://github.com/velsa/quiet-operators-playbook">GitHub</a>
+  <header>
+    <div class="topbar">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <a href="{{ '/' | relative_url }}" class="navlink" style="padding:0; border:0; background:transparent; color:var(--text);">Quiet Operators</a>
+      </div>
+
+      <nav>
+        <a class="navlink" href="{{ '/' | relative_url }}">Docs</a>
+        <a class="navlink" href="{{ '/runbooks/inbox-triage/' | relative_url }}">Runbooks</a>
+        <a class="navlink" href="{{ '/runbooks/template/' | relative_url }}">Template</a>
+        <a class="navlink" href="{{ '/manifests/guardrails/' | relative_url }}">Guardrails</a>
+        <a class="iconbtn" href="https://github.com/velsa/quiet-operators-playbook" aria-label="GitHub repository">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 .5C5.65.5.5 5.78.5 12.29c0 5.21 3.29 9.63 7.86 11.19.58.11.79-.26.79-.57v-2.13c-3.2.72-3.87-1.59-3.87-1.59-.52-1.36-1.27-1.72-1.27-1.72-1.04-.73.08-.72.08-.72 1.15.08 1.76 1.23 1.76 1.23 1.02 1.8 2.67 1.28 3.32.98.1-.76.4-1.28.72-1.58-2.55-.3-5.23-1.31-5.23-5.84 0-1.29.45-2.35 1.19-3.18-.12-.3-.52-1.52.11-3.17 0 0 .97-.32 3.18 1.21.92-.26 1.91-.39 2.89-.4.98.01 1.97.14 2.89.4 2.2-1.53 3.17-1.21 3.17-1.21.63 1.65.23 2.87.11 3.17.74.83 1.19 1.89 1.19 3.18 0 4.54-2.69 5.54-5.25 5.84.41.36.78 1.08.78 2.18v3.23c0 .31.21.68.79.57 4.58-1.56 7.87-5.98 7.87-11.19C23.5 5.78 18.35.5 12 .5z"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <main>
+      {{ content }}
+    </main>
+
+    <hr />
+    <footer>
+      Quiet Operators · doc-first · PRs welcome
+    </footer>
   </div>
-  {{ content }}
-  <hr />
-  <div class="muted">Quiet Operators · Doc-first · PRs welcome</div>
 </body>
 </html>
