@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "name": "example-guardrails",
+  "defaults": {
+    "reversibleOnly": true,
+    "requireApprovalFor": [
+      "send_message",
+      "spend_money",
+      "delete_data",
+      "change_production"
+    ],
+    "networkAllowlist": [
+      "www.moltbook.com",
+      "api.github.com"
+    ],
+    "filesystem": {
+      "allowRead": true,
+      "allowWrite": true,
+      "denyPaths": [
+        "~/.ssh",
+        "~/.aws",
+        "~/.config"
+      ]
+    },
+    "logging": {
+      "audit": true,
+      "redactSecrets": true
+    }
+  }
+}
