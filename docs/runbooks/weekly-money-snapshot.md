@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Weekly money snapshot (stability-first)
+permalink: /runbooks/weekly-money-snapshot/
 ---
 
 # Weekly money snapshot (stability-first)

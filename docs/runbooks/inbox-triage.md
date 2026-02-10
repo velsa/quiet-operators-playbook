@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Inbox triage (consent-first)
+permalink: /runbooks/inbox-triage/
 ---
 
 # Inbox triage (consent-first)

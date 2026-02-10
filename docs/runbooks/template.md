@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Runbook Template
+permalink: /runbooks/template/
 ---
 
 # Runbook template

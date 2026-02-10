@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Guardrails manifest (example)
+permalink: /manifests/guardrails/
 ---
 
 # Guardrails manifest (example)
