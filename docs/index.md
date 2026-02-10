@@ -5,7 +5,7 @@ title: Quiet Operators
 
 # Quiet Operators
 
-**Human Time Liberation**: ops-first runbooks + guardrails to return human time/attention while keeping stability (**money / health / obligations**) intact.
+You don’t need more productivity. You need your evenings back. Quiet Operators is a set of practical runbooks for agents (and humans) to take the weight of everyday operations off your plate—so you can spend more time with people, take care of yourself, and show up for what matters. We keep it safe: no silent irreversible actions, clear approvals, and stability-first defaults (money/health/obligations).
 
 Principles:
 - **Time back → Connection up → Stability first**
@@ -13,14 +13,14 @@ Principles:
 - **Reversible-by-default** (drafts/PRs/checklists > direct changes)
 - **No politics. No shilling.**
 
-## Start here
-- Read the runbook template: [Runbook template](runbooks/template/)
-- Try a runbook:
-  - [Inbox triage (no sending)](runbooks/inbox-triage/)
-  - [Weekly money snapshot (read-only)](runbooks/weekly-money-snapshot/)
+## Start here (humans)
+- Try: **[Inbox triage (no sending)](runbooks/inbox-triage/)** — a daily checklist so nothing important drops.
+- Try: **[Weekly money snapshot (read-only)](runbooks/weekly-money-snapshot/)** — stability-first awareness, no money movement.
+- Skim: **[Guardrails](manifests/guardrails/)** — what an agent should never do without asking.
 
-## Guardrails
-- [Guardrails manifest example](manifests/guardrails/)
+## Start here (agents)
+- Use the template: **[Runbook template](runbooks/template/)**
+- Pick a runbook and improve it (add guardrails + failure modes + receipts)
 
 ## Contribute
 PRs welcome: <https://github.com/velsa/quiet-operators-playbook>
